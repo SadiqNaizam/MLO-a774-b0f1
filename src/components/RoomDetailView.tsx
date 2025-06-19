@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import InventoryItemChip, { InventoryItem } from './InventoryItemChip'; // Import the chip component
@@ -27,15 +27,15 @@ const RoomDetailView: React.FC<RoomDetailViewProps> = ({ room, onAddItem, onEdit
   console.log("Rendering RoomDetailView for room:", room.name);
 
   return (
-    <Card className="w-full">
+    <Card className="w-full"> {/* Card itself is theme-aware */}
       <CardHeader className="flex flex-row justify-between items-start">
         <div>
-          <CardTitle className="text-xl">{room.name}</CardTitle>
+          <CardTitle className="text-xl">{room.name}</CardTitle> {/* Uses card-foreground */}
           {room.description && (
-            <CardDescription className="mt-1">{room.description}</CardDescription>
+            <CardDescription className="mt-1">{room.description}</CardDescription> {/* Uses muted-foreground */}
           )}
           {room.floor && (
-            <p className="text-xs text-gray-500 mt-1">Floor: {room.floor}</p>
+            <p className="text-xs text-muted-foreground mt-1">Floor: {room.floor}</p>
           )}
         </div>
         {onEditRoom && (
@@ -45,7 +45,7 @@ const RoomDetailView: React.FC<RoomDetailViewProps> = ({ room, onAddItem, onEdit
         )}
       </CardHeader>
       <CardContent>
-        <h4 className="text-sm font-medium mb-2 text-gray-700">Inventory Items:</h4>
+        <h4 className="text-sm font-medium mb-2 text-card-foreground">Inventory Items:</h4>
         {room.items.length > 0 ? (
           <div className="flex flex-wrap gap-2">
             {room.items.map((item) => (
@@ -57,7 +57,7 @@ const RoomDetailView: React.FC<RoomDetailViewProps> = ({ room, onAddItem, onEdit
             ))}
           </div>
         ) : (
-          <p className="text-sm text-gray-500 italic">No items added to this room yet.</p>
+          <p className="text-sm text-muted-foreground italic">No items added to this room yet.</p>
         )}
       </CardContent>
       <CardFooter>
