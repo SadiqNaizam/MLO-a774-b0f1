@@ -1,19 +1,28 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { Home, Building2, CalendarDays, MapPin, Settings } from 'lucide-react'; // Example icons
+import { Home, Building2, CalendarDays, MapPin } from 'lucide-react'; // Removed Settings icon
 
 // Define navigation items
 const navItems = [
   { href: '/', label: 'Dashboard', icon: Home },
-  { href: '/house-management', label: 'My House', icon: Building2 }, // Corrected link based on App.tsx
-  { href: '/event-planner', label: 'Event Planner', icon: CalendarDays }, // Corrected link
-  { href: '/local-guide', label: 'Local Guide', icon: MapPin }, // Corrected link
-  { href: '/settings', label: 'Settings', icon: Settings },
+  { href: '/house-management', label: 'My House', icon: Building2 },
+  { href: '/event-planner', label: 'Event Planner', icon: CalendarDays },
+  { href: '/local-guide', label: 'Local Guide', icon: MapPin },
+  // { href: '/settings', label: 'Settings', icon: Settings }, // Removed Settings link
 ];
 
 // You can also use shadcn's NavigationMenu components for more complex dropdowns if needed:
-// import {\n//   NavigationMenu as ShadcnNavigationMenu,\n//   NavigationMenuContent,\n//   NavigationMenuItem,\n//   NavigationMenuLink,\n//   NavigationMenuList,\n//   NavigationMenuTrigger,\n//   navigationMenuTriggerStyle,\n// } from \"@/components/ui/navigation-menu\";\n
+// import {
+//   NavigationMenu as ShadcnNavigationMenu,
+//   NavigationMenuContent,
+//   NavigationMenuItem,
+//   NavigationMenuLink,
+//   NavigationMenuList,
+//   NavigationMenuTrigger,
+//   navigationMenuTriggerStyle,
+// } from "@/components/ui/navigation-menu";
+
 interface NavigationMenuProps {
   className?: string;
 }
@@ -42,7 +51,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ className }) => {
           <item.icon className="h-5 w-5" />
           <span>{item.label}</span>
         </Link>
-      ))}\
+      ))}
     </nav>
   );
 };
