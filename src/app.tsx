@@ -5,7 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import DashboardPage from "./pages/DashboardPage";
+// import DashboardPage from "./pages/DashboardPage"; // Removed import
 import HouseManagementPage from "./pages/HouseManagementPage";
 import EventPlannerPage from "./pages/EventPlannerPage";
 import LocalGuidePage from "./pages/LocalGuidePage";
@@ -51,7 +51,7 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<DashboardPage />} />
+            <Route path="/" element={<HouseManagementPage />} /> {/* Changed to HouseManagementPage */}
             <Route path="/house-management" element={<HouseManagementPage />} />
             <Route path="/event-planner" element={<EventPlannerPage />} />
             <Route path="/local-guide" element={<LocalGuidePage />} />
