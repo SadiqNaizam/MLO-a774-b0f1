@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react'; // useEffect removed as it's no longer needed for theme
 import NavigationMenu from '@/components/layout/NavigationMenu';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Switch } from '@/components/ui/switch';
+import { Switch } from '@/components/ui/switch'; // Kept for Email Notifications, but Dark Mode switch is removed
 import { UserCircle, Edit3 } from 'lucide-react';
 
 const ProfilePage: React.FC = () => {
@@ -21,24 +21,8 @@ const ProfilePage: React.FC = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
 
-  const [darkMode, setDarkMode] = useState(() => {
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme) {
-      return storedTheme === 'dark';
-    }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
+  // DarkMode state and useEffect have been removed. The theme is now static (black).
   const [emailNotifications, setEmailNotifications] = useState(true);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [darkMode]);
 
   const handleProfileUpdate = (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,7 +80,7 @@ const ProfilePage: React.FC = () => {
                     <Input id="userEmail" type="email" value={userEmail} onChange={e => setUserEmail(e.target.value)} className="mt-1" />
                   </div>
                    <div>
-                    <label htmlFor="avatarUrl" className="block text-sm font-medium text-foreground">Avatar URL</label>
+                    <label htmlFor="avatarUrl" className="block text-sm font-medium text-foreground\">Avatar URL</label>
                     <Input id="avatarUrl" type="text" value={avatarUrl} onChange={e => setAvatarUrl(e.target.value)} className="mt-1" placeholder="https://example.com/avatar.png"/>
                   </div>
                   <Button type="submit">Save Profile</Button>
@@ -136,16 +120,10 @@ const ProfilePage: React.FC = () => {
                 <CardDescription>Customize your app experience.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
+                {/* Dark Mode Switch has been removed */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-sm font-medium text-foreground">Dark Mode</h4>
-                    <p className="text-xs text-muted-foreground">Toggle between light and dark themes.</p>
-                  </div>
-                  <Switch id="darkModeSwitch" checked={darkMode} onCheckedChange={setDarkMode} />
-                </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h4 className="text-sm font-medium text-foreground">Email Notifications</h4>
+                    <h4 className="text-sm font-medium text-foreground\">Email Notifications</h4>
                     <p className="text-xs text-muted-foreground">Receive updates and alerts via email.</p>
                   </div>
                   <Switch id="emailNotificationsSwitch" checked={emailNotifications} onCheckedChange={setEmailNotifications} />
