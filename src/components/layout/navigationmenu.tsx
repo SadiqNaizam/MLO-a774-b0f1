@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { Building2, CalendarDays, MapPin } from 'lucide-react'; // Home and Settings icons are not needed
+import { Building2, CalendarDays, MapPin, Settings } from 'lucide-react'; // Added Settings icon
 
 // Define navigation items
 const navItems = [
@@ -9,7 +9,7 @@ const navItems = [
   { href: '/house-management', label: 'My House', icon: Building2 },
   { href: '/event-planner', label: 'Event Planner', icon: CalendarDays },
   { href: '/local-guide', label: 'Local Guide', icon: MapPin },
-  // Settings link removed
+  { href: '/profile', label: 'Profile', icon: Settings }, // Added Profile link
 ];
 
 // You can also use shadcn's NavigationMenu components for more complex dropdowns if needed:
@@ -37,7 +37,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ className }) => {
     if (href === '/house-management' && location.pathname === '/') {
       return true;
     }
-    return location.pathname === href;
+    return location.pathname === href || location.pathname.startsWith(href + '/'); // Make active if path starts with href e.g. /profile/security
   };
 
 
