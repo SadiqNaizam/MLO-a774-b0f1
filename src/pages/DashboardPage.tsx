@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const placeholderEvents: EventSummary[] = [
   { id: '1', title: 'Community BBQ', date: '2024-08-15', time: '6:00 PM', location: 'Park Common Area', description: 'Annual neighborhood BBQ. Bring a dish!' },
-  { id: '2', title: 'Book Club Meeting', date: '2024-08-22', time: '7:30 PM', location: 'Local Library', description: 'Discussing "The Midnight Library".' },
+  { id: '2', title: 'Book Club Meeting', date: '2024-08-22', time: '7:30 PM', location: 'Local Library', description: 'Discussing \"The Midnight Library\".' },
   { id: '3', title: 'Weekend Hike', date: '2024-08-25', time: '9:00 AM', location: 'Mountain View Trail', description: 'Challenging but rewarding hike.' },
 ];
 
@@ -20,11 +20,11 @@ const DashboardPage: React.FC = () => {
   const userName = "Alex"; // Placeholder user name
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-background text-foreground">
       <NavigationMenu className="w-64" />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header appName="My Home Dashboard" />
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-background p-6">
           <div className="container mx-auto space-y-6">
             <Card>
               <CardHeader>
@@ -54,7 +54,7 @@ const DashboardPage: React.FC = () => {
                       </div>
                     </ScrollArea>
                   ) : (
-                    <p>No upcoming events. Plan something new!</p>
+                    <p className="text-muted-foreground">No upcoming events. Plan something new!</p>
                   )}
                    <Button asChild className="mt-4">
                      <Link to="/event-planner">Go to Event Planner <ArrowRight className="ml-2 h-4 w-4" /></Link>
@@ -68,13 +68,13 @@ const DashboardPage: React.FC = () => {
                   <CardDescription>Quick stats about your home.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="flex justify-between items-center p-3 bg-gray-50 rounded-md">
-                    <span>Total Rooms Managed:</span>
-                    <span className="font-semibold">5</span> {/* Placeholder */}
+                  <div className="flex justify-between items-center p-3 bg-muted/50 rounded-md">
+                    <span className="text-sm text-muted-foreground">Total Rooms Managed:</span>
+                    <span className="font-semibold text-foreground">5</span> {/* Placeholder */}
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-gray-50 rounded-md">
-                    <span>Items Tracked:</span>
-                    <span className="font-semibold">27</span> {/* Placeholder */}
+                  <div className="flex justify-between items-center p-3 bg-muted/50 rounded-md">
+                    <span className="text-sm text-muted-foreground">Items Tracked:</span>
+                    <span className="font-semibold text-foreground">27</span> {/* Placeholder */}
                   </div>
                   <Button asChild className="w-full mt-2">
                     <Link to="/house-management">Manage My House <ArrowRight className="ml-2 h-4 w-4" /></Link>
@@ -89,7 +89,7 @@ const DashboardPage: React.FC = () => {
                 <CardDescription>Explore your saved local spots in Granada.</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="mb-4">Revisit your favorite restaurants, historical sites, and shops.</p>
+                <p className="mb-4 text-muted-foreground">Revisit your favorite restaurants, historical sites, and shops.</p>
                 <Button asChild>
                   <Link to="/local-guide">Open Local Guide <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
