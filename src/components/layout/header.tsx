@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// Link is no longer needed for the Avatar if settings page is removed
+// import { Link } from 'react-router-dom'; 
 import { Button } from '@/components/ui/button';
 import { UserCircle, Bell } from 'lucide-react'; // Example icons
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"; // Shadcn Avatar
@@ -17,9 +18,10 @@ const Header: React.FC<HeaderProps> = ({ appName = "App Dashboard" }) => {
         <div className="flex justify-between items-center h-16">
           {/* Left section: App Name / Logo */}
           <div className="flex items-center">
-            <Link to="/" className="text-xl font-bold text-foreground">
+            {/* App Name should link to dashboard */}
+            <a href="/" className="text-xl font-bold text-foreground">
               {appName}
-            </Link>
+            </a>
           </div>
 
           {/* Right section: Actions / User Menu */}
@@ -27,15 +29,15 @@ const Header: React.FC<HeaderProps> = ({ appName = "App Dashboard" }) => {
             <Button variant="ghost" size="icon" aria-label="Notifications" className="text-muted-foreground hover:text-foreground">
               <Bell className="h-5 w-5" />
             </Button>
-            {/* Replace with actual user data and dropdown menu */}
-            <Link to="/settings">
-              <Avatar className="h-8 w-8">
+            {/* Avatar no longer links to settings */}
+            {/* <Link to="/settings"> */}
+              <Avatar className="h-8 w-8 cursor-default"> {/* Added cursor-default as it's no longer a link */}
                 <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                 <AvatarFallback>
                   <UserCircle className="h-8 w-8 text-muted-foreground" />
                 </AvatarFallback>
               </Avatar>
-            </Link>
+            {/* </Link> */}
           </div>
         </div>
       </div>
