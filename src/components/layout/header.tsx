@@ -1,6 +1,5 @@
 import React from 'react';
-// Link is no longer needed for the Avatar if settings page is removed
-// import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom'; // Import Link
 import { Button } from '@/components/ui/button';
 import { UserCircle, Bell } from 'lucide-react'; // Example icons
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"; // Shadcn Avatar
@@ -29,15 +28,15 @@ const Header: React.FC<HeaderProps> = ({ appName = "App Dashboard" }) => {
             <Button variant="ghost" size="icon" aria-label="Notifications" className="text-muted-foreground hover:text-foreground">
               <Bell className="h-5 w-5" />
             </Button>
-            {/* Avatar no longer links to settings */}
-            {/* <Link to="/settings"> */}
-              <Avatar className="h-8 w-8 cursor-default"> {/* Added cursor-default as it's no longer a link */}
+            {/* Avatar now links to profile */}
+            <Link to="/profile">
+              <Avatar className="h-8 w-8"> {/* Removed cursor-default */}
                 <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                 <AvatarFallback>
                   <UserCircle className="h-8 w-8 text-muted-foreground" />
                 </AvatarFallback>
               </Avatar>
-            {/* </Link> */}
+            </Link>
           </div>
         </div>
       </div>
