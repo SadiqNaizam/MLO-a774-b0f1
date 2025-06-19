@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const placeholderEvents: EventSummary[] = [
   { id: '1', title: 'Community BBQ', date: '2024-08-15', time: '6:00 PM', location: 'Park Common Area', description: 'Annual neighborhood BBQ. Bring a dish!' },
-  { id: '2', title: 'Book Club Meeting', date: '2024-08-22', time: '7:30 PM', location: 'Local Library', description: 'Discussing "The Midnight Library".' },
+  { id: '2', title: 'Club', date: '2024-08-22', time: '7:30 PM', location: 'Local Library', description: 'Discussing "The Midnight Library".' },
   { id: '3', title: 'Weekend Hike', date: '2024-08-25', time: '9:00 AM', location: 'Mountain View Trail', description: 'Challenging but rewarding hike.' },
 ];
 
