@@ -9,7 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HouseManagementPage from "./pages/HouseManagementPage";
 import EventPlannerPage from "./pages/EventPlannerPage";
 import LocalGuidePage from "./pages/LocalGuidePage";
-// import SettingsPage from "./pages/SettingsPage"; // Removed import
+// SettingsPage import removed
 import NotFound from "./pages/NotFound"; // Assuming NotFound.tsx exists
 
 const queryClient = new QueryClient();
@@ -22,25 +22,14 @@ const App = () => {
 
       // Apply theme from local storage or system preference
       // The SettingsPage used to handle this toggle, now it's just initial load logic.
-      // If settings page was the *only* place to toggle, this logic might need review
-      // but it seems fine as an initial theme setter.
       if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
         document.documentElement.classList.add('dark');
       } else {
         document.documentElement.classList.remove('dark');
-        // Explicitly set to light if not dark to ensure localStorage is consistent
-        // if (storedTheme !== 'light' && !prefersDark) {
-        //  localStorage.setItem('theme', 'light');
-        // }
       }
     };
 
     applyTheme();
-
-    // Logic for listening to system theme changes was commented out, 
-    // it can remain so or be removed if not intended for future use.
-    // For now, theme is set on load based on localStorage or system preference.
-    // Without a settings page, changing theme dynamically requires another UI element or dev tools.
 
   }, []);
 
@@ -55,7 +44,7 @@ const App = () => {
             <Route path="/house-management" element={<HouseManagementPage />} />
             <Route path="/event-planner" element={<EventPlannerPage />} />
             <Route path="/local-guide" element={<LocalGuidePage />} />
-            {/* <Route path="/settings" element={<SettingsPage />} /> */} {/* Removed route */}
+            {/* SettingsPage route removed */}
             
             {/* Placeholder routes for links in footer, can be developed later */}
             <Route path="/privacy" element={<NotFound />} /> 
