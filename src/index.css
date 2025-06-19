@@ -4,14 +4,14 @@
 
 @layer base {
   :root {
-    --background: 40 56% 95%; /* Light Warm Beige */
-    --foreground: 240 10% 15%; /* Dark Cool Gray */
+    --background: 0 0% 0%; /* Black */
+    --foreground: 0 0% 98%; /* Near White */
 
-    --card: 40 56% 95%;
-    --card-foreground: 240 10% 15%;
+    --card: 0 0% 4%; /* Dark Gray for cards */
+    --card-foreground: 0 0% 95%; /* Light Gray for card text */
 
-    --popover: 40 56% 95%;
-    --popover-foreground: 240 10% 15%;
+    --popover: 0 0% 5%; /* Dark Gray for popovers */
+    --popover-foreground: 0 0% 95%; /* Light Gray for popover text */
 
     --primary: 20 70% 55%; /* Terracotta */
     --primary-foreground: 20 50% 98%; /* Very Light Terracotta/Off-White */
@@ -19,8 +19,8 @@
     --secondary: 80 30% 45%; /* Olive Green */
     --secondary-foreground: 80 30% 98%; /* Very Light Olive/Off-White */
 
-    --muted: 220 15% 90%; /* Soft Cool Gray */
-    --muted-foreground: 220 10% 40%; /* Medium Cool Gray */
+    --muted: 0 0% 15%; /* Medium-Dark Gray */
+    --muted-foreground: 0 0% 60%; /* Medium Gray for muted text */
 
     --accent: 195 65% 60%; /* Calming Pool Blue */
     --accent-foreground: 210 40% 98%; /* White/Very Light Blue */
@@ -28,8 +28,8 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 20% 85%; /* Lighter Soft Cool Gray */
-    --input: 220 20% 85%;
+    --border: 0 0% 10%; /* Dark Gray for borders */
+    --input: 0 0% 10%; /* Dark Gray for input backgrounds */
     --ring: 195 65% 60%; /* Accent color - Pool Blue */
 
     --radius: 0.5rem;
@@ -39,54 +39,54 @@
     --font-heading: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
     /* Sidebar */
-    --sidebar-background: 40 30% 92%;
-    --sidebar-foreground: 240 10% 25%;
-    --sidebar-primary: 20 70% 55%; /* Main primary */
-    --sidebar-primary-foreground: 20 50% 98%;
-    --sidebar-accent: 195 65% 60%; /* Main accent */
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 220 20% 80%;
-    --sidebar-ring: 195 65% 60%; /* Main ring */
+    --sidebar-background: 0 0% 2%; /* Very Dark Gray, near black */
+    --sidebar-foreground: 0 0% 90%; /* Light Gray for sidebar text */
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: var(--primary-foreground);
+    --sidebar-accent: var(--accent);
+    --sidebar-accent-foreground: var(--accent-foreground);
+    --sidebar-border: 0 0% 8%; /* Dark Gray for sidebar border */
+    --sidebar-ring: var(--ring);
   }
 
   .dark {
-    --background: 220 25% 10%; /* Dark Cool Blue/Gray */
-    --foreground: 220 15% 90%; /* Light Cool Gray */
+    --background: 0 0% 0%; /* Black */
+    --foreground: 220 15% 90%; /* Light Cool Gray (original dark theme foreground) */
 
-    --card: 220 25% 15%;
-    --card-foreground: 220 15% 90%;
+    --card: 0 0% 4%; /* Dark Gray for cards (consistent with new :root) */
+    --card-foreground: 220 15% 90%; /* Light Cool Gray (original dark theme card foreground) */
 
-    --popover: 220 25% 15%;
-    --popover-foreground: 220 15% 90%;
+    --popover: 0 0% 5%; /* Dark Gray for popovers (consistent with new :root) */
+    --popover-foreground: 220 15% 90%; /* Light Cool Gray (original dark theme popover foreground) */
 
-    --primary: 20 70% 70%; /* Lighter Terracotta */
-    --primary-foreground: 20 70% 15%; /* Dark Terracotta for text */
+    --primary: 20 70% 70%; /* Lighter Terracotta (original dark theme primary) */
+    --primary-foreground: 20 70% 15%; /* Dark Terracotta for text on primary elements (original dark) */
 
-    --secondary: 80 30% 60%; /* Lighter Olive Green */
-    --secondary-foreground: 80 30% 15%; /* Dark Olive for text */
+    --secondary: 80 30% 60%; /* Lighter Olive Green (original dark theme secondary) */
+    --secondary-foreground: 80 30% 15%; /* Dark Olive for text on secondary elements (original dark) */
 
-    --muted: 220 15% 25%; /* Darker Cool Gray */
-    --muted-foreground: 220 10% 70%; /* Lighter Cool Gray */
+    --muted: 220 15% 20%; /* Darker Cool Gray (slightly different from new :root muted) */
+    --muted-foreground: 220 10% 70%; /* Lighter Cool Gray (original dark theme muted foreground) */
 
-    --accent: 195 65% 75%; /* Lighter Pool Blue */
-    --accent-foreground: 195 65% 15%; /* Dark Pool Blue for text */
+    --accent: 195 65% 75%; /* Lighter Pool Blue (original dark theme accent) */
+    --accent-foreground: 195 65% 15%; /* Dark Pool Blue for text on accent elements (original dark) */
 
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 0 70% 95%;
+    --destructive: 0 70% 50%; /* (original dark theme destructive) */
+    --destructive-foreground: 0 70% 95%; /* (original dark theme destructive foreground) */
 
-    --border: 220 15% 20%; /* Medium Dark Cool Gray */
-    --input: 220 15% 20%;
-    --ring: 195 65% 75%; /* Dark mode Accent color */
+    --border: 0 0% 10%; /* Dark Gray for borders (consistent with new :root) */
+    --input: 0 0% 10%; /* Dark Gray for input backgrounds (consistent with new :root) */
+    --ring: 195 65% 75%; /* Dark mode Accent color (original dark theme ring) */
 
     /* Sidebar Dark */
-    --sidebar-background: 220 25% 12%;
-    --sidebar-foreground: 220 15% 80%;
-    --sidebar-primary: 20 70% 70%; /* Dark mode primary */
-    --sidebar-primary-foreground: 20 70% 15%;
-    --sidebar-accent: 195 65% 75%; /* Dark mode accent */
-    --sidebar-accent-foreground: 195 65% 15%;
-    --sidebar-border: 220 15% 25%;
-    --sidebar-ring: 195 65% 75%; /* Dark mode ring */
+    --sidebar-background: 0 0% 2%; /* Very Dark Gray, near black (consistent with new :root) */
+    --sidebar-foreground: 220 15% 80%; /* Light Cool Gray (original dark theme sidebar foreground) */
+    --sidebar-primary: var(--primary); /* Uses .dark's primary */
+    --sidebar-primary-foreground: var(--primary-foreground); /* Uses .dark's primary-foreground */
+    --sidebar-accent: var(--accent); /* Uses .dark's accent */
+    --sidebar-accent-foreground: var(--accent-foreground); /* Uses .dark's accent-foreground */
+    --sidebar-border: 0 0% 8%; /* Dark Gray for sidebar border (consistent with new :root) */
+    --sidebar-ring: var(--ring); /* Uses .dark's ring */
   }
 }
 
