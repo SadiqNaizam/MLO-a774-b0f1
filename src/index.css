@@ -36,7 +36,7 @@
 
     /* Fonts */
     --font-sans: "Nunito Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol\", \"Noto Color Emoji";
-    --font-heading: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji";
+    --font-heading: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol\", \"Noto Color Emoji";
 
     /* Sidebar */
     --sidebar-background: 0 0% 2%; /* Very Dark Gray, near black */
@@ -49,7 +49,45 @@
     --sidebar-ring: var(--ring);
   }
 
-  /* The .dark class rule has been removed to make the :root theme (black theme) the only theme. */
+  .dark {
+    --background: 0 0% 0%; /* Black */
+    --foreground: 0 0% 98%; /* Near White (Changed from Light Cool Gray) */
+
+    --card: 0 0% 4%; /* Dark Gray for cards (consistent with new :root) */
+    --card-foreground: 0 0% 95%; /* Light Gray for card text (Changed from Light Cool Gray) */
+
+    --popover: 0 0% 5%; /* Dark Gray for popovers (consistent with new :root) */
+    --popover-foreground: 0 0% 95%; /* Light Gray for popover text (Changed from Light Cool Gray) */
+
+    --primary: 20 70% 70%; /* Lighter Terracotta (original dark theme primary) */
+    --primary-foreground: 20 70% 15%; /* Dark Terracotta for text on primary elements (original dark) */
+
+    --secondary: 80 30% 60%; /* Lighter Olive Green (original dark theme secondary) */
+    --secondary-foreground: 80 30% 15%; /* Dark Olive for text on secondary elements (original dark) */
+
+    --muted: 0 0% 15%; /* Medium-Dark Gray (Changed from Darker Cool Gray) */
+    --muted-foreground: 0 0% 60%; /* Medium Gray for muted text (Changed from Lighter Cool Gray) */
+
+    --accent: 195 65% 75%; /* Lighter Pool Blue (original dark theme accent) */
+    --accent-foreground: 195 65% 15%; /* Dark Pool Blue for text on accent elements (original dark) */
+
+    --destructive: 0 70% 50%; /* (original dark theme destructive) */
+    --destructive-foreground: 0 70% 95%; /* (original dark theme destructive foreground) */
+
+    --border: 0 0% 10%; /* Dark Gray for borders (consistent with new :root) */
+    --input: 0 0% 10%; /* Dark Gray for input backgrounds (consistent with new :root) */
+    --ring: 195 65% 75%; /* Dark mode Accent color (original dark theme ring) */
+
+    /* Sidebar Dark */
+    --sidebar-background: 0 0% 2%; /* Very Dark Gray, near black (consistent with new :root) */
+    --sidebar-foreground: 0 0% 90%; /* Light Gray (Changed from Light Cool Gray) */
+    --sidebar-primary: var(--primary); /* Uses .dark's primary */
+    --sidebar-primary-foreground: var(--primary-foreground); /* Uses .dark's primary-foreground */
+    --sidebar-accent: var(--accent); /* Uses .dark's accent */
+    --sidebar-accent-foreground: var(--accent-foreground); /* Uses .dark's accent-foreground */
+    --sidebar-border: 0 0% 8%; /* Dark Gray for sidebar border (consistent with new :root) */
+    --sidebar-ring: var(--ring); /* Uses .dark's ring */
+  }
 }
 
 @layer base {
