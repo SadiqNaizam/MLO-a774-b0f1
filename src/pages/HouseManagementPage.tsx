@@ -6,8 +6,8 @@ import RoomDetailView, { RoomDetails } from '@/components/RoomDetailView';
 import { InventoryItem } from '@/components/InventoryItemChip';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"; // Conceptual, not implementing full react-hook-form
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
+// import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"; // Conceptual
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -118,24 +118,22 @@ const HouseManagementPage: React.FC = () => {
      setIsAddItemDialogOpen(false);
   };
   
-  // Placeholder for edit functions
   const handleEditItem = (itemId: string, roomId: string) => console.log(`Edit item ${itemId} in room ${roomId}`);
   const handleEditRoom = (roomId: string) => console.log(`Edit room ${roomId}`);
 
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-background text-foreground">
       <NavigationMenu className="w-64" />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header appName="House Management" />
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-background p-6">
           <div className="container mx-auto">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {floors.map(floor => (
                   <TabsTrigger key={floor.id} value={floor.id}>{floor.name}</TabsTrigger>
                 ))}
-                {/* <Button variant="ghost" size="sm" className="ml-auto" onClick={() => alert("Add new floor dialog would open")}>+ Add Floor</Button> */}
               </TabsList>
               {floors.map(floor => (
                 <TabsContent key={floor.id} value={floor.id}>
@@ -158,11 +156,11 @@ const HouseManagementPage: React.FC = () => {
                           onEditItem={handleEditItem}
                           onEditRoom={handleEditRoom}
                         />
-                      )) : <p className="text-gray-500">No rooms added to {floor.name} yet. Click "Add Room" to get started.</p>}
+                      )) : <p className="text-muted-foreground">No rooms added to {floor.name} yet. Click "Add Room" to get started.</p>}
                     </CardContent>
                   </Card>
                 </TabsContent>
-              ))}
+              ))}\
             </Tabs>
           </div>
         </main>
@@ -171,18 +169,18 @@ const HouseManagementPage: React.FC = () => {
 
       {/* Add Room Dialog */}
       <Dialog open={isAddRoomDialogOpen} onOpenChange={setIsAddRoomDialogOpen}>
-        <DialogContent>
+        <DialogContent> {/* DialogContent is theme-aware */}
           <DialogHeader>
             <DialogTitle>Add New Room</DialogTitle>
             <DialogDescription>Enter details for the new room in {floors.find(f => f.id === currentRoomFormData.floorId)?.name}.</DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="roomName" className="text-right">Name</label>
+              <label htmlFor="roomName" className="text-right text-sm text-foreground">Name</label>
               <Input id="roomName" value={currentRoomFormData.name} onChange={(e) => setCurrentRoomFormData(prev => ({...prev, name: e.target.value}))} className="col-span-3" placeholder="e.g., Bedroom, Office" />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="roomDescription" className="text-right">Description</label>
+              <label htmlFor="roomDescription" className="text-right text-sm text-foreground">Description</label>
               <Textarea id="roomDescription" value={currentRoomFormData.description} onChange={(e) => setCurrentRoomFormData(prev => ({...prev, description: e.target.value}))} className="col-span-3" placeholder="e.g., Guest bedroom with south-facing window" />
             </div>
           </div>
@@ -195,7 +193,7 @@ const HouseManagementPage: React.FC = () => {
 
       {/* Add Item Dialog */}
       <Dialog open={isAddItemDialogOpen} onOpenChange={setIsAddItemDialogOpen}>
-        <DialogContent>
+        <DialogContent> {/* DialogContent is theme-aware */}
           <DialogHeader>
             <DialogTitle>Add New Item</DialogTitle>
             <DialogDescription>
@@ -204,20 +202,20 @@ const HouseManagementPage: React.FC = () => {
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-                <label htmlFor="itemName" className="text-right">Item Name</label>
+                <label htmlFor="itemName" className="text-right text-sm text-foreground">Item Name</label>
                 <Input id="itemName" value={currentItemFormData.name} onChange={(e) => setCurrentItemFormData(prev => ({...prev, name: e.target.value}))} className="col-span-3" placeholder="e.g., Two Green Sofas" />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-                <label htmlFor="itemQuantity" className="text-right">Quantity</label>
+                <label htmlFor="itemQuantity" className="text-right text-sm text-foreground">Quantity</label>
                 <Input id="itemQuantity" type="number" value={currentItemFormData.quantity} onChange={(e) => setCurrentItemFormData(prev => ({...prev, quantity: parseInt(e.target.value,10) || 1}))} className="col-span-3" />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-                <label htmlFor="itemCategory" className="text-right">Category</label>
+                <label htmlFor="itemCategory" className="text-right text-sm text-foreground">Category</label>
                 <Select value={currentItemFormData.category} onValueChange={(value) => setCurrentItemFormData(prev => ({...prev, category: value}))}>
                     <SelectTrigger className="col-span-3">
                         <SelectValue placeholder="Select category" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent> {/* SelectContent is theme-aware */}
                         <SelectItem value="Furniture">Furniture</SelectItem>
                         <SelectItem value="Electronics">Electronics</SelectItem>
                         <SelectItem value="Appliance">Appliance</SelectItem>
