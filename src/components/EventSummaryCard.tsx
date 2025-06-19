@@ -22,22 +22,22 @@ const EventSummaryCard: React.FC<EventSummaryCardProps> = ({ event, onEdit, onVi
   console.log("Rendering EventSummaryCard for event:", event.title);
 
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full max-w-md"> {/* Card component itself is theme-aware */}
       <CardHeader>
-        <CardTitle className="text-lg">{event.title}</CardTitle>
+        <CardTitle className="text-lg">{event.title}</CardTitle> {/* Uses card-foreground */}
         {event.description && (
-          <CardDescription className="line-clamp-2">{event.description}</CardDescription>
+          <CardDescription className="line-clamp-2">{event.description}</CardDescription> {/* Uses muted-foreground */}
         )}
       </CardHeader>
       <CardContent className="space-y-2 text-sm">
         <div className="flex items-center">
-          <CalendarIcon className="mr-2 h-4 w-4 text-gray-500" />
-          <span>{event.date} {event.time && `- ${event.time}`}</span>
+          <CalendarIcon className="mr-2 h-4 w-4 text-muted-foreground" />
+          <span className="text-foreground">{event.date} {event.time && `- ${event.time}`}</span>
         </div>
         {event.location && (
           <div className="flex items-center">
-            <MapPinIcon className="mr-2 h-4 w-4 text-gray-500" />
-            <span>{event.location}</span>
+            <MapPinIcon className="mr-2 h-4 w-4 text-muted-foreground" />
+            <span className="text-foreground">{event.location}</span>
           </div>
         )}
       </CardContent>
