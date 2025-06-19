@@ -9,7 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HouseManagementPage from "./pages/HouseManagementPage";
 import EventPlannerPage from "./pages/EventPlannerPage";
 import LocalGuidePage from "./pages/LocalGuidePage";
-// SettingsPage import removed
+import ProfilePage from "./pages/ProfilePage"; // Added import for ProfilePage
 import NotFound from "./pages/NotFound"; // Assuming NotFound.tsx exists
 
 const queryClient = new QueryClient();
@@ -21,7 +21,7 @@ const App = () => {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
       // Apply theme from local storage or system preference
-      // The SettingsPage used to handle this toggle, now it's just initial load logic.
+      // The ProfilePage (formerly SettingsPage) handles the toggle, this is initial load logic.
       if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
         document.documentElement.classList.add('dark');
       } else {
@@ -44,7 +44,7 @@ const App = () => {
             <Route path="/house-management" element={<HouseManagementPage />} />
             <Route path="/event-planner" element={<EventPlannerPage />} />
             <Route path="/local-guide" element={<LocalGuidePage />} />
-            {/* SettingsPage route removed */}
+            <Route path="/profile" element={<ProfilePage />} /> {/* Added route for ProfilePage */}
             
             {/* Placeholder routes for links in footer, can be developed later */}
             <Route path="/privacy" element={<NotFound />} /> 
