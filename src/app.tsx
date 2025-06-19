@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,8 +15,23 @@ import NotFound from "./pages/NotFound"; // Assuming NotFound.tsx exists
 const queryClient = new QueryClient();
 
 const App = () => {
-  // useEffect for theme application has been removed as the theme is now static (black).
-  // The :root styles in index.css will apply by default.
+  useEffect(() => {
+    const applyTheme = () => {
+      const storedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      // Apply theme from local storage or system preference
+      // The ProfilePage (formerly SettingsPage) handles the toggle, this is initial load logic.
+      if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    };
+
+    applyTheme();
+
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
