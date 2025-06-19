@@ -5,11 +5,11 @@ import Footer from '@/components/layout/Footer';
 import EventSummaryCard, { EventSummary } from '@/components/EventSummaryCard';
 import { Calendar } from '@/components/ui/calendar';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { PlusCircle, Edit3 } from 'lucide-react';
+import { PlusCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 
@@ -46,7 +46,7 @@ const EventPlannerPage: React.FC = () => {
     setCurrentEventForm({
         id: event.id,
         title: event.title,
-        date: event.date, // Assuming date is already in YYYY-MM-DD
+        date: event.date, 
         time: event.time || '',
         location: event.location || '',
         description: event.description || ''
@@ -76,23 +76,23 @@ const EventPlannerPage: React.FC = () => {
 
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-background text-foreground">
       <NavigationMenu className="w-64" />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header appName="Event Planner" />
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-background p-6">
           <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-1">
-              <Card>
+              <Card> {/* Card is theme-aware */}
                 <CardHeader>
                   <CardTitle>Select Date</CardTitle>
                 </CardHeader>
                 <CardContent className="flex justify-center">
-                   <Calendar
+                   <Calendar // Calendar component from shadcn is theme-aware
                     mode="single"
                     selected={selectedDate}
                     onSelect={setSelectedDate}
-                    className="rounded-md border"
+                    className="rounded-md border" 
                   />
                 </CardContent>
               </Card>
@@ -102,16 +102,16 @@ const EventPlannerPage: React.FC = () => {
             </div>
 
             <div className="lg:col-span-2">
-              <Card>
+              <Card> {/* Card is theme-aware */}
                 <CardHeader>
                   <CardTitle>Upcoming Events</CardTitle>
                 </CardHeader>
                 <CardContent>
                   {events.length > 0 ? (
-                    <ScrollArea className="h-[calc(100vh-280px)] pr-3"> {/* Adjust height as needed */}
+                    <ScrollArea className="h-[calc(100vh-280px)] pr-3">
                       <div className="space-y-4">
                         {events
-                          .sort((a,b) => new Date(a.date).getTime() - new Date(b.date).getTime()) // Sort by date
+                          .sort((a,b) => new Date(a.date).getTime() - new Date(b.date).getTime())
                           .map(event => (
                           <EventSummaryCard
                             key={event.id}
@@ -123,7 +123,7 @@ const EventPlannerPage: React.FC = () => {
                       </div>
                     </ScrollArea>
                   ) : (
-                    <p className="text-gray-500">No events planned. Click "Create New Event" to add one.</p>
+                    <p className="text-muted-foreground">No events planned. Click "Create New Event" to add one.</p>
                   )}
                 </CardContent>
               </Card>
@@ -135,7 +135,7 @@ const EventPlannerPage: React.FC = () => {
 
       {/* Add/Edit Event Dialog */}
       <Dialog open={isEventDialogOpen} onOpenChange={setIsEventDialogOpen}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px]"> {/* DialogContent is theme-aware */}
           <DialogHeader>
             <DialogTitle>{isEditing ? 'Edit Event' : 'Create New Event'}</DialogTitle>
             <DialogDescription>
@@ -144,23 +144,23 @@ const EventPlannerPage: React.FC = () => {
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="eventTitle" className="text-right">Title</label>
+              <label htmlFor="eventTitle" className="text-right text-sm text-foreground">Title</label>
               <Input id="eventTitle" value={currentEventForm.title} onChange={e => setCurrentEventForm({...currentEventForm, title: e.target.value})} className="col-span-3" placeholder="e.g., Birthday Bash" />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="eventDate" className="text-right">Date</label>
+              <label htmlFor="eventDate" className="text-right text-sm text-foreground">Date</label>
               <Input id="eventDate" type="date" value={currentEventForm.date} onChange={e => setCurrentEventForm({...currentEventForm, date: e.target.value})} className="col-span-3" />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="eventTime" className="text-right">Time</label>
+              <label htmlFor="eventTime" className="text-right text-sm text-foreground">Time</label>
               <Input id="eventTime" type="time" value={currentEventForm.time} onChange={e => setCurrentEventForm({...currentEventForm, time: e.target.value})} className="col-span-3" />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="eventLocation" className="text-right">Location</label>
+              <label htmlFor="eventLocation" className="text-right text-sm text-foreground">Location</label>
               <Input id="eventLocation" value={currentEventForm.location} onChange={e => setCurrentEventForm({...currentEventForm, location: e.target.value})} className="col-span-3" placeholder="e.g., My Home" />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="eventDescription" className="text-right">Description</label>
+              <label htmlFor="eventDescription" className="text-right text-sm text-foreground">Description</label>
               <Textarea id="eventDescription" value={currentEventForm.description} onChange={e => setCurrentEventForm({...currentEventForm, description: e.target.value})} className="col-span-3" placeholder="e.g., Casual get-together with games and food." />
             </div>
           </div>
