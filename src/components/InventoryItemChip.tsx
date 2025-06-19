@@ -31,17 +31,17 @@ const InventoryItemChip: React.FC<InventoryItemChipProps> = ({ item, onClick, cl
 
   return (
     <Badge
-      variant="secondary"
+      variant="secondary" // This variant will use themed bg-secondary, text-secondary-foreground and hover:bg-secondary/80
       className={cn(
-        "cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors py-1 px-2.5 flex items-center space-x-1.5",
+        "cursor-pointer transition-colors py-1 px-2.5 flex items-center space-x-1.5",
         className
       )}
       onClick={handleClick}
-      title={`Item: ${item.name}${item.quantity ? ` (Qty: ${item.quantity})` : ''}`}
+      title={`Item: ${item.name}${item.quantity ? ` (Qty: ${item.quantity})` : ''}`}\
     >
-      <IconComponent className="h-3.5 w-3.5 text-gray-600 dark:text-gray-400" />
-      <span className="text-xs font-medium text-gray-700 dark:text-gray-300">{item.name}</span>
-      {item.quantity && <span className="text-xs text-gray-500 dark:text-gray-400">({item.quantity})</span>}
+      <IconComponent className="h-3.5 w-3.5 text-secondary-foreground/80" />
+      <span className="text-xs font-medium text-secondary-foreground">{item.name}</span>
+      {item.quantity && <span className="text-xs text-secondary-foreground/70">({item.quantity})</span>}
     </Badge>
   );
 };
