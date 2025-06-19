@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { Building2, CalendarDays, MapPin } from 'lucide-react'; // Removed Home icon
+import { Building2, CalendarDays, MapPin } from 'lucide-react'; // Home and Settings icons are not needed
 
 // Define navigation items
 const navItems = [
@@ -9,7 +9,7 @@ const navItems = [
   { href: '/house-management', label: 'My House', icon: Building2 },
   { href: '/event-planner', label: 'Event Planner', icon: CalendarDays },
   { href: '/local-guide', label: 'Local Guide', icon: MapPin },
-  // { href: '/settings', label: 'Settings', icon: Settings }, // Removed Settings link
+  // Settings link removed
 ];
 
 // You can also use shadcn's NavigationMenu components for more complex dropdowns if needed:
@@ -57,7 +57,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ className }) => {
               ? "bg-sidebar-accent text-sidebar-accent-foreground"
               : "text-sidebar-foreground"
           )}
-        >\
+        >
           <item.icon className="h-5 w-5" />
           <span>{item.label}</span>
         </Link>
