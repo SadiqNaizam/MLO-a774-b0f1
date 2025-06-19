@@ -5,7 +5,7 @@ import Footer from '@/components/layout/Footer';
 import LocalSpotEntry, { LocalSpot } from '@/components/LocalSpotEntry';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -62,7 +62,7 @@ const LocalGuidePage: React.FC = () => {
   const handleSaveSpot = () => {
     if (!currentSpotForm.name.trim() || !currentSpotForm.category.trim()) return;
     const newSpot: LocalSpot = {
-        id: isEditingSpot && currentSpotForm.id ? currentSpotForm.id : `spot-${Date.now()}`,
+        id: isEditingSpot && currentSpotForm.id ? currentSpotForm.id : `spot-${Date.now()}`,\
         name: currentSpotForm.name,
         category: currentSpotForm.category,
         address: currentSpotForm.address,
@@ -90,13 +90,13 @@ const LocalGuidePage: React.FC = () => {
   );
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-background text-foreground">
       <NavigationMenu className="w-64" />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header appName="Local Guide - Granada" />
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-background p-6">
           <div className="container mx-auto">
-            <Card>
+            <Card> {/* Card is theme-aware */}
               <CardHeader>
                 <CardTitle>Your Granada Guide</CardTitle>
                 <div className="flex flex-col sm:flex-row gap-2 mt-4">
@@ -105,7 +105,7 @@ const LocalGuidePage: React.FC = () => {
                     <Input
                       type="search"
                       placeholder="Search spots (e.g., Alhambra, tapas, bakery)"
-                      className="w-full pl-8"
+                      className="w-full pl-8" // Input is theme-aware
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -117,7 +117,7 @@ const LocalGuidePage: React.FC = () => {
               </CardHeader>
               <CardContent>
                 {filteredSpots.length > 0 ? (
-                  <ScrollArea className="h-[calc(100vh-320px)]"> {/* Adjust height as needed */}
+                  <ScrollArea className="h-[calc(100vh-320px)]">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-1">
                       {filteredSpots.map(spot => (
                         <LocalSpotEntry
@@ -126,14 +126,14 @@ const LocalGuidePage: React.FC = () => {
                           onEdit={() => handleOpenEditSpotDialog(spot)}
                           onViewDirections={spot.address ? handleViewDirections : undefined}
                         />
-                      ))}
+                      ))}\
                     </div>
                   </ScrollArea>
                 ) : (
-                  <p className="text-center text-gray-500 py-8">
+                  <p className="text-center text-muted-foreground py-8">
                     No spots found matching your search, or no spots added yet.
                   </p>
-                )}
+                )}\
               </CardContent>
             </Card>
           </div>
@@ -143,58 +143,58 @@ const LocalGuidePage: React.FC = () => {
 
       {/* Add/Edit Spot Dialog */}
       <Dialog open={isSpotDialogOpen} onOpenChange={setIsSpotDialogOpen}>
-        <DialogContent className="sm:max-w-lg">
+        <DialogContent className="sm:max-w-lg"> {/* DialogContent is theme-aware */}
           <DialogHeader>
             <DialogTitle>{isEditingSpot ? 'Edit Local Spot' : 'Add New Local Spot'}</DialogTitle>
             <DialogDescription>
               {isEditingSpot ? 'Update the details for this spot.' : 'Save a new point of interest, restaurant, or shop.'}
             </DialogDescription>
           </DialogHeader>
-          <ScrollArea className="max-h-[70vh]">
-          <div className="grid gap-4 py-4 px-6">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="spotName" className="text-right">Name</label>
-              <Input id="spotName" value={currentSpotForm.name} onChange={e => setCurrentSpotForm({...currentSpotForm, name: e.target.value})} className="col-span-3" placeholder="e.g., Alhambra Palace" />
+          <ScrollArea className="max-h-[70vh] pr-2"> {/* Added pr-2 to prevent scrollbar overlap in some cases */}
+            <div className="grid gap-4 py-4 px-6">
+              <div className="grid grid-cols-4 items-center gap-4">
+                <label htmlFor="spotName" className="text-right text-sm text-foreground">Name</label>
+                <Input id="spotName" value={currentSpotForm.name} onChange={e => setCurrentSpotForm({...currentSpotForm, name: e.target.value})} className="col-span-3" placeholder="e.g., Alhambra Palace" />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <label htmlFor="spotCategory" className="text-right text-sm text-foreground">Category</label>
+                <Select value={currentSpotForm.category} onValueChange={value => setCurrentSpotForm({...currentSpotForm, category: value})}>
+                  <SelectTrigger className="col-span-3">
+                    <SelectValue placeholder="Select category" />
+                  </SelectTrigger>
+                  <SelectContent> {/* SelectContent is theme-aware */}
+                    <SelectItem value="Monument">Monument</SelectItem>
+                    <SelectItem value="Restaurant">Restaurant</SelectItem>
+                    <SelectItem value="Cafe">Cafe / Bar</SelectItem>
+                    <SelectItem value="Shop">Shop</SelectItem>
+                    <SelectItem value="Park">Park / Nature</SelectItem>
+                    <SelectItem value="Viewpoint">Viewpoint</SelectItem>
+                    <SelectItem value="Museum">Museum</SelectItem>
+                    <SelectItem value="Other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <label htmlFor="spotAddress" className="text-right text-sm text-foreground">Address</label>
+                <Input id="spotAddress" value={currentSpotForm.address} onChange={e => setCurrentSpotForm({...currentSpotForm, address: e.target.value})} className="col-span-3" placeholder="e.g., Calle Real de la Alhambra, s/n" />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <label htmlFor="spotDescription" className="text-right text-sm text-foreground">Description</label>
+                <Textarea id="spotDescription" value={currentSpotForm.description} onChange={e => setCurrentSpotForm({...currentSpotForm, description: e.target.value})} className="col-span-3" placeholder="Notes, opening hours, tips..." />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <label htmlFor="spotImageUrl" className="text-right text-sm text-foreground">Image URL</label>
+                <Input id="spotImageUrl" value={currentSpotForm.imageUrl} onChange={e => setCurrentSpotForm({...currentSpotForm, imageUrl: e.target.value})} className="col-span-3" placeholder="https://example.com/image.jpg" />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <label htmlFor="spotWebsiteUrl" className="text-right text-sm text-foreground">Website URL</label>
+                <Input id="spotWebsiteUrl" value={currentSpotForm.websiteUrl} onChange={e => setCurrentSpotForm({...currentSpotForm, websiteUrl: e.target.value})} className="col-span-3" placeholder="https://example.com" />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <label htmlFor="spotRating" className="text-right text-sm text-foreground">Rating (0-5)</label>
+                <Input id="spotRating" type="number" min="0" max="5" step="0.1" value={currentSpotForm.rating} onChange={e => setCurrentSpotForm({...currentSpotForm, rating: parseFloat(e.target.value)})} className="col-span-3" />
+              </div>
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="spotCategory" className="text-right">Category</label>
-              <Select value={currentSpotForm.category} onValueChange={value => setCurrentSpotForm({...currentSpotForm, category: value})}>
-                <SelectTrigger className="col-span-3">
-                  <SelectValue placeholder="Select category" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Monument">Monument</SelectItem>
-                  <SelectItem value="Restaurant">Restaurant</SelectItem>
-                  <SelectItem value="Cafe">Cafe / Bar</SelectItem>
-                  <SelectItem value="Shop">Shop</SelectItem>
-                  <SelectItem value="Park">Park / Nature</SelectItem>
-                  <SelectItem value="Viewpoint">Viewpoint</SelectItem>
-                  <SelectItem value="Museum">Museum</SelectItem>
-                  <SelectItem value="Other">Other</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="spotAddress" className="text-right">Address</label>
-              <Input id="spotAddress" value={currentSpotForm.address} onChange={e => setCurrentSpotForm({...currentSpotForm, address: e.target.value})} className="col-span-3" placeholder="e.g., Calle Real de la Alhambra, s/n" />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="spotDescription" className="text-right">Description</label>
-              <Textarea id="spotDescription" value={currentSpotForm.description} onChange={e => setCurrentSpotForm({...currentSpotForm, description: e.target.value})} className="col-span-3" placeholder="Notes, opening hours, tips..." />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="spotImageUrl" className="text-right">Image URL</label>
-              <Input id="spotImageUrl" value={currentSpotForm.imageUrl} onChange={e => setCurrentSpotForm({...currentSpotForm, imageUrl: e.target.value})} className="col-span-3" placeholder="https://example.com/image.jpg" />
-            </div>
-             <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="spotWebsiteUrl" className="text-right">Website URL</label>
-              <Input id="spotWebsiteUrl" value={currentSpotForm.websiteUrl} onChange={e => setCurrentSpotForm({...currentSpotForm, websiteUrl: e.target.value})} className="col-span-3" placeholder="https://example.com" />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="spotRating" className="text-right">Rating (0-5)</label>
-              <Input id="spotRating" type="number" min="0" max="5" step="0.1" value={currentSpotForm.rating} onChange={e => setCurrentSpotForm({...currentSpotForm, rating: parseFloat(e.target.value)})} className="col-span-3" />
-            </div>
-          </div>
           </ScrollArea>
           <DialogFooter className="px-6 pb-4 pt-2">
             <Button variant="outline" onClick={() => setIsSpotDialogOpen(false)}>Cancel</Button>
