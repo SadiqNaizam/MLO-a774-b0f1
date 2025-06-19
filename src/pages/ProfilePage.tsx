@@ -1,13 +1,12 @@
-import React, { useState } from 'react'; // useEffect removed as it's no longer needed for theme
+import React, { useState } from 'react';
 import NavigationMenu from '@/components/layout/NavigationMenu';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-// import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"; // Conceptual
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Switch } from '@/components/ui/switch'; // Kept for Email Notifications, but Dark Mode switch is removed
+import { Switch } from '@/components/ui/switch'; // Switch can be removed if not used elsewhere, but kept for now if other preferences use it
 import { UserCircle, Edit3 } from 'lucide-react';
 
 const ProfilePage: React.FC = () => {
@@ -21,7 +20,7 @@ const ProfilePage: React.FC = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
 
-  // DarkMode state and useEffect have been removed. The theme is now static (black).
+  // Removed darkMode state and related useEffect for theme switching
   const [emailNotifications, setEmailNotifications] = useState(true);
 
   const handleProfileUpdate = (e: React.FormEvent) => {
@@ -51,7 +50,7 @@ const ProfilePage: React.FC = () => {
     <div className="flex h-screen bg-background text-foreground">
       <NavigationMenu className="w-64" />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header appName="Profile" /> {/* Changed appName */}
+        <Header appName="Profile" />
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-background p-6">
           <div className="container mx-auto max-w-3xl space-y-8">
             {/* Profile Information Card */}
@@ -97,15 +96,15 @@ const ProfilePage: React.FC = () => {
               <CardContent>
                 <form onSubmit={handleChangePassword} className="space-y-6">
                   <div>
-                    <label htmlFor="currentPassword"className="block text-sm font-medium text-foreground">Current Password</label>
+                    <label htmlFor="currentPassword"className="block text-sm font-medium text-foreground\">Current Password</label>
                     <Input id="currentPassword" type="password" value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} className="mt-1" />
                   </div>
                   <div>
-                    <label htmlFor="newPassword"className="block text-sm font-medium text-foreground">New Password</label>
+                    <label htmlFor="newPassword"className="block text-sm font-medium text-foreground\">New Password</label>
                     <Input id="newPassword" type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} className="mt-1" />
                   </div>
                   <div>
-                    <label htmlFor="confirmNewPassword"className="block text-sm font-medium text-foreground">Confirm New Password</label>
+                    <label htmlFor="confirmNewPassword"className="block text-sm font-medium text-foreground\">Confirm New Password</label>
                     <Input id="confirmNewPassword" type="password" value={confirmNewPassword} onChange={e => setConfirmNewPassword(e.target.value)} className="mt-1" />
                   </div>
                   <Button type="submit">Change Password</Button>
@@ -120,11 +119,11 @@ const ProfilePage: React.FC = () => {
                 <CardDescription>Customize your app experience.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                {/* Dark Mode Switch has been removed */}
+                {/* Removed Dark Mode Switch */}
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="text-sm font-medium text-foreground\">Email Notifications</h4>
-                    <p className="text-xs text-muted-foreground">Receive updates and alerts via email.</p>
+                    <p className="text-xs text-muted-foreground\">Receive updates and alerts via email.</p>
                   </div>
                   <Switch id="emailNotificationsSwitch" checked={emailNotifications} onCheckedChange={setEmailNotifications} />
                 </div>
