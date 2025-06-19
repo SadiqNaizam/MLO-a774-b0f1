@@ -25,7 +25,7 @@ const LocalSpotEntry: React.FC<LocalSpotEntryProps> = ({ spot, onEdit, onViewDir
   console.log("Rendering LocalSpotEntry for spot:", spot.name);
 
   return (
-    <Card className="w-full overflow-hidden">
+    <Card className="w-full overflow-hidden"> {/* Card is theme-aware */}
       {spot.imageUrl && (
         <div className="w-full">
           <AspectRatio ratio={16 / 9}>
@@ -40,19 +40,19 @@ const LocalSpotEntry: React.FC<LocalSpotEntryProps> = ({ spot, onEdit, onViewDir
       )}
       <CardHeader>
         <div className="flex justify-between items-start">
-            <CardTitle className="text-lg">{spot.name}</CardTitle>
+            <CardTitle className="text-lg">{spot.name}</CardTitle> {/* Uses card-foreground */}
             {spot.rating && (
-                <div className="flex items-center text-sm text-amber-500">
+                <div className="flex items-center text-sm text-amber-500"> {/* Amber color for rating stands out, can be themed if needed */}
                     <Star className="h-4 w-4 fill-current mr-1" /> {spot.rating.toFixed(1)}
                 </div>
             )}
         </div>
-        <CardDescription>{spot.category}</CardDescription>
+        <CardDescription>{spot.category}</CardDescription> {/* Uses muted-foreground */}
       </CardHeader>
       <CardContent className="space-y-2 text-sm">
-        {spot.description && <p className="text-gray-600 line-clamp-3">{spot.description}</p>}
+        {spot.description && <p className="text-muted-foreground line-clamp-3">{spot.description}</p>}
         {spot.address && (
-          <div className="flex items-center text-gray-500">
+          <div className="flex items-center text-muted-foreground">
             <MapPin className="mr-2 h-4 w-4 flex-shrink-0" />
             <span>{spot.address}</span>
           </div>
